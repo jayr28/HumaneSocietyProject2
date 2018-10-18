@@ -204,7 +204,7 @@ namespace HumaneSociety
             UserInterface.DisplayUserOptions("Please enter your state (abbreviation or full state name");
             string state = UserInterface.GetUserInput();
             var states = Query.GetStates();
-            var stateNames = from territory in states select territory.name.ToLower();
+            var stateNames = from territory in states select territory.Name.ToLower();
             var stateAbrreviations = from territory in states select territory.abbrev;
             if (stateNames.ToList().Contains(state.ToLower()) || stateAbrreviations.ToList().Contains(state.ToUpper()))
             {
