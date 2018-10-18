@@ -84,5 +84,50 @@ namespace HumaneSociety
 
         }
 
+        internal static IEnumerable<Client> RetrieveClients()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static List<USState> GetStates()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int state)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void updateClient(Client client)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void UpdateEmail(Client client)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void UpdateUsername(Client client)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void UpdateAddress(Client client)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void UpdateFirstName(Client client)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void UpdateLastName(Client client)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
