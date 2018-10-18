@@ -10,15 +10,25 @@ namespace HumaneSociety
 {
     public static class Query
     {
-       
+        private static HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+
         internal static void RunEmployeeQueries(Employee employee, string v)
         {
-            throw new NotImplementedException();
+            var tempEmployee = db.Employees.Where(e => e.FirstName == employee.FirstName).SingleOrDefault();
+            if(tempEmployee == default(Employee))
+            {
+                tempEmployee = db.Employees.Where(e => e.LastName == employee.LastName).SingleOrDefault();
+
+                if(tempEmployee == default(Employee))
+                {
+                    tempEmployee = db.Employees.Where
+                }
+            }
         }
 
         internal static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            return db.Rooms.
         }
 
         internal static IQueryable<Animal> SearchForAnimalByMultipleTraits()
@@ -86,7 +96,9 @@ namespace HumaneSociety
 
         internal static IEnumerable<Client> RetrieveClients()
         {
-            throw new NotImplementedException();
+           
+            return db.Clients.Where(c => true).ToList();
+            
         }
 
         public static List<USState> GetStates()
