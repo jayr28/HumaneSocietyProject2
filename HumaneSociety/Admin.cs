@@ -8,10 +8,7 @@ namespace HumaneSociety
 {
     class Admin : User
     {
-
-
-
-
+       
         public override void LogIn()
         {
             UserInterface.DisplayUserOptions("What is your password?");
@@ -72,7 +69,10 @@ namespace HumaneSociety
             employee.Email = UserInterface.GetStringData("email", "the employee's");
             try
             {
-                Query.RunEmployeeQueries(employee, "update");
+                //Query.RunEmployeeQueries(employee, "update");
+                Query.RunEmployeeQueries REQ;
+                REQ = Query.Update;
+                REQ(employee, "update");
                 UserInterface.DisplayUserOptions("Employee update successful.");
             }
             catch
@@ -83,13 +83,21 @@ namespace HumaneSociety
             }
         }
 
+    
+
+
         private void ReadEmployee()
         {
             try
             {
                 Employee employee = new Employee();
                 employee.EmployeeNumber = int.Parse(UserInterface.GetStringData("employee number", "the employee's"));
-                Query.RunEmployeeQueries(employee, "read");
+
+                Query.RunEmployeeQueries REQ;
+                REQ = Query.ReadEmployee;
+                REQ(employee, "read");
+
+                //Query.RunEmployeeQueries(employee, "read");
             }
             catch
             {
@@ -107,7 +115,10 @@ namespace HumaneSociety
             try
             {
                 Console.Clear();
-                Query.RunEmployeeQueries(employee, "delete");
+                //Query.RunEmployeeQueries(employee, "delete");
+                Query.RunEmployeeQueries REQ;
+                REQ = Query.Delete;
+                REQ(employee, "delete");
                 UserInterface.DisplayUserOptions("Employee successfully removed");
             }
             catch
@@ -127,7 +138,10 @@ namespace HumaneSociety
             employee.Email = UserInterface.GetStringData("email", "the employee's"); ;
             try
             {
-                Query.RunEmployeeQueries(employee, "create");
+                //Query.RunEmployeeQueries(employee, "create");
+                Query.RunEmployeeQueries REQ;
+                REQ = Query.Create;
+                REQ(employee, "create");
                 UserInterface.DisplayUserOptions("Employee addition successful.");
             }
             catch
