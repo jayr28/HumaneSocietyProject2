@@ -60,10 +60,21 @@ namespace HumaneSociety
         //    throw new NotImplementedException();
         //}
 
-        //internal static Client GetClient(string userName, string password)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        internal static Client GetClient(string userName, string password)
+        {
+            Client returnClient = null;
+            var query =
+                from client in db.Clients
+                where client.UserName == userName & client.Password == password
+                select client;
+
+            foreach(Client client in query)
+            {
+                returnClient = client;
+            }
+
+            return returnClient;
+        }
 
         //internal static IQueryable<Animal> GetUserAdoptionStatus(Client client)
         //{
