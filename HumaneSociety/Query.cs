@@ -39,7 +39,7 @@ namespace HumaneSociety
             yield return employee;
         }
 
-     
+
         //internal static Room GetRoom(int animalId)
         //{
         //    return db.Rooms.
@@ -102,58 +102,111 @@ namespace HumaneSociety
         //                adaptionList.Add(adapt);
         //            }
         //        }
-                
+
         //    }
         //    return adaptionList;
 
         //}
 
-        //internal static IEnumerable<Client> RetrieveClients()
-        //{
-           
-        //    return db.Clients.Where(c => true).ToList();
+        internal static IEnumerable<Client> RetrieveClients()
+        {
+            var clientList = db.Clients.ToList();
+            return clientList;
+        }
+
+        public static List<USState> GetStates()
+        {
+            var stateList = db.USStates.ToList();
+            return stateList;
+        }
+
+        internal static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int state)
+        {
+            Client client = new Client();
+            client.FirstName = firstName;
+            client.LastName = lastName;
+            client.UserName = username;
+            client.Password = password;
+            client.Email = email;
+            client.Address.AddressLine1 = streetAddress;
+            client.Address.Zipcode = zipCode;
+            db.Clients.InsertOnSubmit(client);
             
-        //}
+        }
 
-        //public static List<USState> GetStates()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        internal static void updateClient(Client client)
+        {
+            db.SubmitChanges();
+        }
 
-        //internal static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int state)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        internal static void UpdateEmail(Client client1)
+        {
+            var query =
+                from client in db.Clients
+                where client1.ClientId == client.ClientId
+                select client;
 
-        //internal static void updateClient(Client client)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            foreach (Client client in query)
+            {
+                client.Email = Console.ReadLine();
+            }
 
-        //internal static void UpdateEmail(Client client)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            db.SubmitChanges();
+        }
 
-        //internal static void UpdateUsername(Client client)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        internal static void UpdateUsername(Client client1)
+        {
+            var query =
+                from client in db.Clients
+                where client1.ClientId == client.ClientId
+                select client;
 
-        //internal static void UpdateAddress(Client client)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            foreach (Client client in query)
+            {
+                client.UserName = Console.ReadLine();
+            }
+            db.SubmitChanges();
+        }
 
-        //internal static void UpdateFirstName(Client client)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        internal static void UpdateAddress(Client client1)
+        {
+            var query =
+                from client in db.Clients
+                where client1.ClientId == client.ClientId
+                select client;
 
-        //internal static void UpdateLastName(Client client)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            foreach (Client client in query)
+            {
+                client.Address.AddressLine1 = Console.ReadLine();
+            }
+        }
 
+        internal static void UpdateFirstName(Client client1)
+        {
+            var query =
+                from client in db.Clients
+                where client1.ClientId == client.ClientId
+                select client;
+
+            foreach (Client client in query)
+            {
+                client.FirstName = Console.ReadLine();
+            }
+            db.SubmitChanges();
+        }
+
+        internal static void UpdateLastName(Client client1)
+        {
+            var query =
+                from client in db.Clients
+                where client1.ClientId == client.ClientId
+                select client;
+
+            foreach (Client client in query)
+            {
+                client.LastName = Console.ReadLine();
+            }
+            db.SubmitChanges();
+        }
     }
 }
